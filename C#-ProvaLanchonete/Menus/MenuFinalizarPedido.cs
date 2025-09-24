@@ -47,8 +47,8 @@ internal class MenuFinalizarPedido : Menu
         Thread.Sleep(2000);
 
         Console.Clear();
-        Console.WriteLine("\n Agradecemos a prefrência\nVolte sempre");
+        Console.WriteLine("\nAgradecemos a prefrência\nVolte sempre");
         Thread.Sleep(3000);
-        Environment.Exit(0);
+
     }
 }

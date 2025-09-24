@@ -6,8 +6,8 @@ Lanche lancheExemplo = new Lanche("X-burger", 20.50, "Pão, carne e queijo");
 Lanche lancheExemplo2 = new Lanche("Hamburger", 18, "Pão e carne ");
 
 
-DataLanches.InserirLanche(lancheExemplo);
-DataLanches.InserirLanche(lancheExemplo2);
+//DataLanches.InserirLanche(lancheExemplo);
+//DataLanches.InserirLanche(lancheExemplo2);
 
 List<Lanche> pedido = new List<Lanche>();
 
@@ -29,7 +29,7 @@ void Menu()
     DataPedidos.CriarTabela();
     ExibirLogo();
     Console.WriteLine("------------------------");
-    Console.WriteLine("1 - Adicionar Lanche");
+    Console.WriteLine("1 - Registro de Lanches");
     Console.WriteLine("2 - Realizar pedido");
     Console.WriteLine("3 - Carrinho");
     Console.WriteLine("4 - Histórico de pedidos");

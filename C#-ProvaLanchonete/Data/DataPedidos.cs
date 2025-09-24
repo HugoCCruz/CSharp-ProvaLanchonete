@@ -24,7 +24,7 @@ internal class DataPedidos
                   Id INTEGER PRIMARY KEY AUTOINCREMENT,
                   Nome TEXT NOT NULL,
                   Total DOUBLE NOT NULL,
-                  Pagamento STRING NOT NULL,
+                  Pagamento STRING NOT NULL
                   );
                     ";
 
@@ -42,7 +42,7 @@ internal class DataPedidos
                 command.CommandText = @"INSERT INTO Pedidos (Nome, Total, Pagamento) VALUES (@Nome, @Total, @Pagamento)";
 
                 command.Parameters.AddWithValue("@Nome", nome);
-                command.Parameters.AddWithValue("@Valor", total);
+                command.Parameters.AddWithValue("@Total", total);
                 command.Parameters.AddWithValue("@Pagamento", pagamento);
 
                 command.ExecuteNonQuery();
@@ -60,6 +60,7 @@ internal class DataPedidos
             }
         }
     }
+
     public static List<PedidosRealizados> ListarPedidos()
     {
         var pedidosRealizados = new List<PedidosRealizados>();

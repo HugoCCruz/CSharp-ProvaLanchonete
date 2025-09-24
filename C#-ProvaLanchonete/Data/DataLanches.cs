@@ -61,11 +61,26 @@ internal class DataLanches
         using (var connection = new SqliteConnection(connectionString))
         {
             connection.Open();
-            var command = connection.CreateCommand();
-            command.CommandText = @"DELETE FROM Lanches WHERE Nome = @Nome ";
-            command.Parameters.AddWithValue("@Nome", nome);
-            command.ExecuteNonQuery();
-            Console.WriteLine($"Lanche {nome} deletado com sucesso!");
+
+            var checkCommand = connection.CreateCommand();
+            checkCommand.CommandText = "SELECT COUNT(*) FROM Lanches WHERE Nome = @Nome";
+            checkCommand.Parameters.AddWithValue("@Nome", nome);
+
+            long count = (long)checkCommand.ExecuteScalar()!;
+
+            if (count > 0)
+            {
+                var deleteCommand = connection.CreateCommand();
+                deleteCommand.CommandText = "DELETE FROM Lanches WHERE Nome = @Nome";
+                deleteCommand.Parameters.AddWithValue("@Nome", nome);
+
+                deleteCommand.ExecuteNonQuery();
+                Console.WriteLine($"Lanche '{nome}' deletado com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine($"Erro: O lanche '{nome}' não foi encontrado.");
+            }
         }
     }
     public static List<Lanche> ListarLanches()

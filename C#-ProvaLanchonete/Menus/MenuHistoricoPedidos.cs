@@ -22,5 +22,10 @@ internal class MenuHistoricoPedidos : Menu
         {
             Console.WriteLine($"Id: {item.Id} | Nome: {item.Nome} | Valor: {item.Total} | Pagamento: {item.Pagamento}");
         }
+        Console.WriteLine("Pressione alguma tecla para voltar ao menu");
+        Console.ReadKey();
+        Console.WriteLine("\nAgradecemos a prefrência\nVolte sempre");
+        Thread.Sleep(3000);
+        Console.Clear();
     }
 }
