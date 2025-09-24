@@ -52,7 +52,7 @@ internal class Pedido
             Console.WriteLine("\nPedido atual:");
             foreach(var lanche in pedido)
             {
-                Console.WriteLine($"{lanche.Nome}");
+                Console.WriteLine($"{lanche.Nome} | {lanche.Valor}");
             }
         }
     }
