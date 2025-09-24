@@ -1,4 +1,5 @@
-﻿using C__ProvaLanchonete.Modelos;
+﻿using C__ProvaLanchonete.Data;
+using C__ProvaLanchonete.Modelos;
 using System.Threading.Channels;
 
 namespace C__ProvaLanchonete.Menus;
@@ -6,13 +7,14 @@ namespace C__ProvaLanchonete.Menus;
 internal class MenuFazerPedido : Menu
 {
     Pedido pedidoSendoFeito = new Pedido();
-    public override void Executar(SortedSet<Lanche> conjuntoLanches, List<Lanche> pedido)
+    public override void Executar( List<Lanche> pedido)
     {
-        base.Executar(conjuntoLanches, pedido);
+        base.Executar(pedido);
         ConcatenarTitulo("Realizar pedido");
 
+        List<Lanche> lanchesDisponiveis = DataLanches.ListarLanches();
         Console.WriteLine("Lanches disponíveis:");
-        foreach(var lanche in conjuntoLanches)
+        foreach(var lanche in lanchesDisponiveis)
         {
             Console.WriteLine($"- {lanche.Nome} | {lanche.Valor} - {lanche.Descricao}");
         }
@@ -32,7 +34,7 @@ internal class MenuFazerPedido : Menu
                
                     Console.WriteLine("\nDigite o nome do lanche que deseja adicionar ao pedido?");
                     string resposta = Console.ReadLine()!;
-                    pedidoSendoFeito.AdicionarAoPedido(conjuntoLanches, pedido, resposta);
+                    pedidoSendoFeito.AdicionarAoPedido(lanchesDisponiveis, pedido, resposta);
             }
             else if (escolha == "2")
             {

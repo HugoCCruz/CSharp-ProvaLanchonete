@@ -1,13 +1,14 @@
-﻿using C__ProvaLanchonete.Modelos;
+﻿using C__ProvaLanchonete.Data;
+using C__ProvaLanchonete.Modelos;
 using System.Runtime.CompilerServices;
 
 namespace C__ProvaLanchonete.Menus;
 
 internal class MenuAdicionarLanche : Menu
 {
-    public override void Executar(SortedSet<Lanche> conjuntoLanches, List<Lanche> pedido)
+    public override void Executar(List<Lanche> pedido)
     {
-        base.Executar(conjuntoLanches, pedido);
+        base.Executar(pedido);
         ConcatenarTitulo("Registro de lanches");
 
         while (true) 
@@ -22,9 +23,6 @@ internal class MenuAdicionarLanche : Menu
             }
             else if (escolha == "1")
             {
-                if (conjuntoLanches.Count() < 10)
-                {
-        
                     while (true)
                     {
                         Console.WriteLine("\nDigite o nome do lanche a ser adicionado: ");
@@ -33,26 +31,17 @@ internal class MenuAdicionarLanche : Menu
                         double valorLanche = double.Parse(Console.ReadLine()!);
                         Console.WriteLine("Digite a descrição do lanche: ");
                         string descricaoLanche = Console.ReadLine()!;
+                        Lanche novoLanche = new Lanche(nomeLanche, valorLanche, descricaoLanche);
 
                         Console.WriteLine($"O pedido está correto?\nNome: {nomeLanche}\nValor: {valorLanche}\nDescrição: {descricaoLanche}\nSim ou não?");
                         string entrada = Console.ReadLine()!;
                         string correto = entrada.Replace(" ", "").ToLowerInvariant();
                         if (correto == "sim")
                         {
-                            conjuntoLanches.Add(new Lanche(nomeLanche, valorLanche, descricaoLanche));
+                            DataLanches.InserirLanche(novoLanche);
                             break;
                         }
-                        else if (correto == "não")
-                        {
-
-                        }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Você atingiu o limite de lanhces a ser adicionado");
-                    break;
-                }
             }
             else
             {

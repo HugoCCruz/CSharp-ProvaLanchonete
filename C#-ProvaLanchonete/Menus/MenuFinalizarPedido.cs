@@ -1,34 +1,38 @@
-﻿using C__ProvaLanchonete.Modelos;
+﻿using C__ProvaLanchonete.Data;
+using C__ProvaLanchonete.Modelos;
 
 namespace C__ProvaLanchonete.Menus;
 
 internal class MenuFinalizarPedido : Menu
 {
     Pedido pedidoFeito = new Pedido();
-    public override void Executar(SortedSet<Lanche> conjuntoLanches, List<Lanche> pedido)
+    public override void Executar(List<Lanche> pedido)
     {
 
-        base.Executar(conjuntoLanches, pedido);
+        base.Executar(pedido);
         ConcatenarTitulo("Finalizar Pedido");
 
         Console.WriteLine("Resumo do pedido:");
         Console.WriteLine("-----------------");
         pedidoFeito.ExibirPedido(pedido);
-        pedidoFeito.ExibirTotal(pedido);
+        double total = pedidoFeito.ExibirTotal(pedido);
         Console.WriteLine("-----------------");
-        Console.WriteLine("Qual será a fornma de pagaemnto\n1 - Débito\n2 - Crédito\n3 - Dinheiro");
+        Console.WriteLine("Digite seu nome para confirmar o pedido: ");
+        string nome = Console.ReadLine()!;
+        Console.WriteLine("Qual será a fornma de pagaemnto\nDébito\nCrédito\nDinheiro ");
         string escolha = Console.ReadLine()!;
-        switch (escolha)
+        string pagamento = escolha.Replace(" ", "").Replace("é", "e").ToLowerInvariant();
+        switch (pagamento)
         {
-            case "1":
+            case "debito":
                 pedidoFeito.ExibirTotal(pedido);
                 Console.WriteLine($"Forma de pagamento: Cartão de Débito");
                 break;
-            case "2":
+            case "credito":
                 pedidoFeito.ExibirTotal(pedido);
                 Console.WriteLine($"Forma de pagamento: Cartão de crédito");
                 break;
-            case "3":
+            case "dinheiro":
                 pedidoFeito.ExibirTotal(pedido);
                 Console.WriteLine($"Forma de pagamento: Dinheiro");
                 break;
@@ -39,6 +43,7 @@ internal class MenuFinalizarPedido : Menu
         Console.WriteLine("\nAguardando pagamento");
         Thread.Sleep(5000);
         Console.WriteLine("Pagamento Realizado!");
+        DataPedidos.InserirPedido(nome, total, pagamento);
         Thread.Sleep(2000);
 
         Console.Clear();

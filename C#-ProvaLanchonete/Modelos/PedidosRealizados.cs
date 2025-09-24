@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace C__ProvaLanchonete.Modelos;
 
-internal class Lanche
+internal class PedidosRealizados
 {
     public int Id { get; set; }
     public string? Nome { get; set; }
-    public double Valor { get; set; }
-    public string? Descricao { get; set; }
+    public double Total { get; set; }
+    public string? Pagamento { get; set; }
 
-    public Lanche(string? nome, double valor, string? descricao)
+    public PedidosRealizados( string? nome, double total, string? pagamento)
     {
         Nome = nome;
-        Valor = valor;
-        Descricao = descricao;
+        Total = total;
+        Pagamento = pagamento;
     }
-
 }

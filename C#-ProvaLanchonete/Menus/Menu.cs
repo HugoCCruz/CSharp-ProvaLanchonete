@@ -4,7 +4,7 @@ namespace C__ProvaLanchonete.Menus;
 
 internal class Menu
 {
-    public virtual void Executar(SortedSet<Lanche> conjuntoLanches, List<Lanche> pedido)
+    public virtual void Executar(List<Lanche> pedido)
     {
         Console.Clear();
     }

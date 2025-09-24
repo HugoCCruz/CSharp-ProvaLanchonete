@@ -1,4 +1,5 @@
-﻿using System;
+﻿using C__ProvaLanchonete.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace C__ProvaLanchonete.Modelos;
 internal class Pedido 
 {
 
-    public void AdicionarAoPedido(SortedSet<Lanche> conjuntoLanches, List<Lanche> pedido, string resposta)
+    public void AdicionarAoPedido(List<Lanche> lanchesDisponiveis, List<Lanche> pedido, string resposta)
     {
 
-        var item = conjuntoLanches.FirstOrDefault(p => p.Nome!.Equals(resposta, StringComparison.OrdinalIgnoreCase));
+        var item = lanchesDisponiveis.FirstOrDefault(p => p.Nome!.Equals(resposta, StringComparison.OrdinalIgnoreCase));
             if (item != null)
             {
                 pedido.Add(item);
@@ -55,7 +56,7 @@ internal class Pedido
             }
         }
     }
-    public void ExibirTotal(List<Lanche> pedido)
+    public double ExibirTotal(List<Lanche> pedido)
     {
         double total = 0;
         foreach(var item in pedido)
@@ -64,7 +65,7 @@ internal class Pedido
         }
         Console.WriteLine($"total do pedido; {total}");
 
-        total = total + (total * 0.07);
-        Console.WriteLine($"Total do pedido com adicional da taxa de seriço: {total}");
-    }
+        double totalComServico = total + (total * 0.07);
+        return totalComServico;
+            }
 }

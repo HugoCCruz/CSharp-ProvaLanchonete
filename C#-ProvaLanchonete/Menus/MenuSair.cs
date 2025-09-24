@@ -10,7 +10,7 @@ namespace C__ProvaLanchonete.Menus;
 
 internal class MenuSair : Menu
 {
-    public override void Executar(SortedSet<Lanche> conjuntoLanches, List<Lanche> pedido)
+    public override void Executar(List<Lanche> pedido)
     {
         Console.WriteLine("Você escolheu sair");
         Thread.Sleep(2000);
